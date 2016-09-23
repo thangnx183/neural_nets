@@ -13,14 +13,10 @@ class network(object):
         self.weights = [ np.random.randn(i,j) for i,j in zip( sizes[1:] , sizes[:-1]) ]
 
     def forward(self, a):
-        #print a.shape
+        
         for w, b in zip(self.weights, self.biases):
-            #print w
             a = sigmoid( np.dot(w,a) + b)
-            #print sigmoid(np.dot(w,a) + b)
-            #print a
-            #print a.shape
-        #print a
+            
         return a
 
     def SGD(self, training_data, epochs, mini_batch_size, eta, test_data = None):
@@ -32,7 +28,7 @@ class network(object):
         for j in xrange(epochs):
             random.shuffle(training_data)
             mini_batches = [ training_data[k:k + mini_batch_size] for k in xrange(0,n,mini_batch_size)]
-            #print len(mini_batches[49])
+            
             for mini_batch in mini_batches:
                  self.update_mini_batch(mini_batch, eta)
 
